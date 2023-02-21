@@ -1,11 +1,16 @@
+import logging
 import pandas as pd
+
+logger = logging.getLogger(__name__)
 
 class DataExtract:
     def __init__(self) -> None:
+        logger.info("DataExtract: __init__ ")
         self.vote_results = self.load_from_raw_data("vote_results")
         self.legislators = self.load_from_raw_data("legislators")
         self.bills = self.load_from_raw_data("bills")
         self.votes = self.load_from_raw_data("votes")
+        logger.info("DataExtract: upload files")
 
     def load_from_raw_data(self, file_name: str):
         try:
@@ -44,8 +49,10 @@ class DataExtract:
         legislators_support_oppose_count.to_csv(
             "legislators_support_oppose_count.csv", index=False
         )
+        logger.info("legislators_support_oppose_count.csv created")
         bills = pd.DataFrame(self.bills_dict).T
         bills.to_csv("bills.csv", index=False)
+        logger.info("bills.csv created")
 
     def create_legislators_support_oppose_count_dict(self, legislator):
         self.legislators_support_oppose_count_dict[legislator["legislator_id"]] = {
