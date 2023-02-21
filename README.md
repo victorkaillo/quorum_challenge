@@ -45,5 +45,10 @@ Quorum Coding Challenge
 
 * **Important:**  If you choose the **docker environment**, remember that the **files** will be created **inside the container**. And you will need to have the container **running** to access them
 
-
+# You can also access the files in json format through the api
+# For this you will need to run the service and access the data through the provided API:
+## endpoints:
+ - make_files_bills_and_legislators_count: it builds the files (asynchronous)
+ - get_bills_count: it returns the file bills in json format
+ - get_legislators_support_oppose_count: it returns the file legislators_support_oppose_count in json format
 **Thank you!**
