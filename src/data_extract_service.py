@@ -1,13 +1,14 @@
 import pandas as pd
 
-class DataExtract():
+class DataExtract:
+    def __init__(self) -> None:
+        self.vote_results = self.load_from_raw_data("vote_results")
+        self.legislators = self.load_from_raw_data("legislators")
+        self.bills = self.load_from_raw_data("bills")
+        self.votes = self.load_from_raw_data("votes")
     def load_from_raw_data(file_name: str):
         return pd.read_csv(f'quorum_challenge/raw_data/{file_name}.csv').drop_duplicates().reset_index()
 
-bills = DataExtract.load_from_raw_data('bills')
-legislators = DataExtract.load_from_raw_data('legislators')
-vote_results = DataExtract.load_from_raw_data('vote_results')
-votes = DataExtract.load_from_raw_data('votes')
 legislators_dict = dict()
 for _, legislator in vote_results.iterrows():
     if not legislators_dict.get(legislator['legislator_id']):
