@@ -14,15 +14,19 @@ class DataExtract:
 
     def load_from_raw_data(self, file_name: str):
         try:
-            return (
+            logger.debug("load_from_raw_data ->>")
+            data_extracted = (
                 pd.read_csv(f"raw_data/{file_name}.csv").drop_duplicates().reset_index()
             )
+            logger.debug(f"load_from_raw_data <<- {file_name} uploaded")
+            return data_extracted
         except FileNotFoundError:
             raise Exception(
                 f"File {file_name} not found: check if the path to file is quorum_challenge/raw_data/{file_name}.csv"
             )
 
     def make_files(self):
+        logger.debug("make_files ->>")
         self.legislators_support_oppose_count_dict = dict()
         self.bills_dict = dict()
         for _, legislator in self.vote_results.iterrows():
@@ -53,8 +57,11 @@ class DataExtract:
         bills = pd.DataFrame(self.bills_dict).T
         bills.to_csv("bills.csv", index=False)
         logger.info("bills.csv created")
+        logger.debug("make_files <<-")
+
 
     def create_legislators_support_oppose_count_dict(self, legislator):
+        logger.debug("create_legislators_support_oppose_count_dict ->>")
         self.legislators_support_oppose_count_dict[legislator["legislator_id"]] = {
             "id": legislator["legislator_id"],
             "name": self.legislators.loc[
@@ -63,8 +70,10 @@ class DataExtract:
             "num_supported_bills": 0,
             "num_opposed_bills": 0,
         }
+        logger.debug("create_legislators_support_oppose_count_dict <<-")
 
     def create_bills_dict(self, legislator):
+        logger.debug("create_bills_dict ->>")
         if not self.bills_dict.get(legislator["vote_id"]):
             bill_id = self.votes.loc[
                 self.votes.id == legislator["vote_id"], "bill_id"
@@ -78,6 +87,7 @@ class DataExtract:
                     self.bills.id == bill_id, "sponsor_id"
                 ].values[0],
             }
+        logger.debug("create_bills_dict <<-")
 
 if __name__ == "__main__":
     data_extract = DataExtract()
