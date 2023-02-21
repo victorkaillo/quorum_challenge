@@ -57,5 +57,21 @@ class DataExtract:
             "num_opposed_bills": 0,
         }
 
-    def create_bills_dict(self):
-        pass
+    def create_bills_dict(self, legislator):
+        if not self.bills_dict.get(legislator["vote_id"]):
+            bill_id = self.votes.loc[
+                self.votes.id == legislator["vote_id"], "bill_id"
+            ].values[0]
+            self.bills_dict[legislator["vote_id"]] = {
+                "id": legislator["vote_id"],
+                "title": self.bills.loc[self.bills.id == bill_id, "title"].values[0],
+                "supporter_count": 0,
+                "opposer_count": 0,
+                "primary_sponsor": self.bills.loc[
+                    self.bills.id == bill_id, "sponsor_id"
+                ].values[0],
+            }
+
+if __name__ == "__main__":
+    data_extract = DataExtract()
+    data_extract.make_files()
