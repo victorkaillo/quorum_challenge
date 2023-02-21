@@ -31,7 +31,12 @@ Quorum Coding Challenge
 	- docker;
 		# To set up enviromment docker:
 		1. $docker build -t quorumchallenge .
+		# To run bash in container:
+
 		2. $docker run -it --entrypoint /bin/bash quorumchallenge -s
+        # OR you can use API
+        2. $docker run quorumchallenge
+        3. access the API by HTTP protocol
 
 
 	- or your local python and pip;
@@ -39,7 +44,7 @@ Quorum Coding Challenge
 		1. Installed Python and Pip
 		2. $pip install -r requirements.txt
 
-3. Run the application.
+3. Run the application. (Not necessary if you are going to use it through the API)
 	- $python3 src/data_extract_service.py
 
 
