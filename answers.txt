@@ -1,0 +1,4 @@
+1. The data is already organized, which reduces the complexity of the solution.
+2. There is a creation method for each file. Inserting new fields is possible by expanding the corresponding creation method with new fields (keys) in the creation dictionary.
+3. The solution would be expanded. Before using the data, it would be collected. The part already implemented would not need to be changed.
+4. About 1 hour

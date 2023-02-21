@@ -50,10 +50,16 @@ Quorum Coding Challenge
 
 * **Important:**  If you choose the **docker environment**, remember that the **files** will be created **inside the container**. And you will need to have the container **running** to access them
 
-# You can also access the files in json format through the api
-# For this you will need to run the service and access the data through the provided API:
-## endpoints:
+## You can also access the files in json format through the api
+## For this you will need to run the service and access the data through the provided API:
+### endpoints:
  - make_files_bills_and_legislators_count: it builds the files (asynchronous)
  - get_bills_count: it returns the file bills in json format
  - get_legislators_support_oppose_count: it returns the file legislators_support_oppose_count in json format
 **Thank you!**
+
+# Answers:
+1. The data is already organized, which reduces the complexity of the solution.
+2. There is a creation method for each file. Inserting new fields is possible by expanding the corresponding creation method with new fields (keys) in the creation dictionary.
+3. The solution would be expanded. Before using the data, it would be collected. The part already implemented would not need to be changed.
+4. About 1 hour
