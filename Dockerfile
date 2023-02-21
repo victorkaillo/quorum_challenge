@@ -15,6 +15,7 @@ RUN pip install -r requirements.txt
 ENV PORT=80
 EXPOSE $PORT
 
+CMD ["python", "run.py"]
 # CMD ["python", "src/data_extract_service.py"]
 # docker build -t quorumchallenge --platform linux/amd64 .
 # docker run -it --entrypoint /bin/bash quorumchallenge -s
