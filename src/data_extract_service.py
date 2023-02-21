@@ -40,6 +40,12 @@ class DataExtract:
                 legislators_support_oppose_count_dict[legislator["legislator_id"]][
                     "num_opposed_bills"
                 ] += 1
+        legislators_support_oppose_count = pd.DataFrame(
+            legislators_support_oppose_count_dict
+        ).T
+        legislators_support_oppose_count.to_csv(
+            "legislators_support_oppose_count.csv", index=False
+        )
 
     def create_bills(self):
         pass
