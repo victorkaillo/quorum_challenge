@@ -6,9 +6,16 @@ class DataExtract:
         self.legislators = self.load_from_raw_data("legislators")
         self.bills = self.load_from_raw_data("bills")
         self.votes = self.load_from_raw_data("votes")
-    def load_from_raw_data(file_name: str):
-        return pd.read_csv(f'quorum_challenge/raw_data/{file_name}.csv').drop_duplicates().reset_index()
 
+    def load_from_raw_data(self, file_name: str):
+        try:
+            return (
+                pd.read_csv(f"raw_data/{file_name}.csv").drop_duplicates().reset_index()
+            )
+        except FileNotFoundError:
+            raise Exception(
+                f"File {file_name} not found: check if the path to file is quorum_challenge/raw_data/{file_name}.csv"
+            )
 legislators_dict = dict()
 for _, legislator in vote_results.iterrows():
     if not legislators_dict.get(legislator['legislator_id']):
