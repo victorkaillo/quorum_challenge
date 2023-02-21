@@ -35,7 +35,7 @@ Quorum Coding Challenge
 
 		2. $docker run -it --entrypoint /bin/bash quorumchallenge -s
         # OR you can use API
-        2. $docker run quorumchallenge
+        2. $docker run --rm -it -p 80:80/tcp quorumchallenge:latest
         3. access the API by HTTP protocol
 
 
